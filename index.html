@@ -1,62 +1,36 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formatowanie Tekstu</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: left;
-            margin-top: 50px;
-        }
-        #formattedText {
-            margin-top: 20px;
-        }
-        .color-button, .toggle-bold-button {
-            padding: 10px;
-            margin: 5px;
-            border: none;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .color-button.red { background-color: red; }
-        .color-button.green { background-color: green; }
-        .color-button.blue { background-color: blue; }
-        .toggle-bold-button { background-color: gray; }
-    </style>
-</head>
-<body>
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    <h3>Podaj rozmiar tekstu w procentach:</h3>
-    <input type="number" id="textSize" value="100"> %
+  .box-purple {
+    width: 120px;
+    height: 120px;
+    background-color: purple;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    font-size: 0; 
+    transition: transform 2s, font-size 0.3s;
+  }
 
-    <h3>Pogrubienie tekstu</h3>
-    <button class="toggle-bold-button" onclick="toggleBold()">Włącz/wyłącz pogrubienie</button>
+  .box-purple:hover {
+    transform: translateX(200px);
+    font-size: 16px;
+  }
+  .linear   { transition-timing-function: linear; }
+  .ease     { transition-timing-function: ease; }
+  .ease-in  { transition-timing-function: ease-in; }
+  .ease-out { transition-timing-function: ease-out; }
+</style>
 
-    <h3>Jakim kolorem sformatować tekst? Wybierz przycisk</h3>
-    <button class="color-button red" onclick="changeColor('red')">czerwony</button>
-    <button class="color-button green" onclick="changeColor('green')">zielony</button>
-    <button class="color-button blue" onclick="changeColor('blue')">niebieski</button>
-
-    <p id="formattedText">Paragraf formatowany przez JavaScript</p>
-
-    <script>
-        document.getElementById('textSize').addEventListener('input', function() {
-            let size = document.getElementById('textSize').value;
-            document.getElementById('formattedText').style.fontSize = size + '%';
-        });
-
-        function toggleBold() {
-            let text = document.getElementById('formattedText');
-            text.style.fontWeight = text.style.fontWeight === 'bold' ? 'normal' : 'bold';
-        }
-        function changeColor(color) {
-            document.getElementById('formattedText').style.color = color;
-        }
-    </script>
-
-</body>
-</html>
-
+<div class="container">
+  <div class="box-purple linear">linear</div>
+  <div class="box-purple ease">ease</div>
+  <div class="box-purple ease-in">ease-in</div>
+  <div class="box-purple ease-out">ease-out</div>
+</div>
